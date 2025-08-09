@@ -6,4 +6,9 @@ parameters:
 		- ./www
 
 includes:
+	- ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
+	- ./vendor/phpstan/phpstan-dibi/extension.neon
 	- ./vendor/phpstan/phpstan-nette/extension.neon
+	- ./vendor/phpstan/phpstan-strict-rules/rules.neon
+	- ./vendor/spaze/phpstan-disallowed-calls/extension.neon
+	- phar://phpstan.phar/conf/bleedingEdge.neon
