@@ -1,6 +1,13 @@
 # see https://doc.nette.org/en/configuring
 
 parameters:
+	dibi: # Accepted security risk for sake of development speed
+		host: database
+		port: 3306
+		database: mydb
+		user: myuser
+		password: mypass
+		lazy: TRUE
 
 
 application:
@@ -34,3 +41,10 @@ di:
 	export:
 		parameters: no
 		tags: no
+
+
+dibi: %dibi%
+
+
+extensions:
+	dibi: Dibi\Bridges\Nette\DibiExtension22

@@ -13,7 +13,7 @@ services:
     database:
         image: mariadb:10.4
         container_name: database
-        environment:
+        environment: # Accepted security risk for sake of development speed
             MYSQL_ROOT_PASSWORD: rootpassword
             MYSQL_DATABASE: mydb
             MYSQL_USER: myuser
