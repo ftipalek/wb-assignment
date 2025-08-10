@@ -15,12 +15,14 @@ use Tracy\ILogger;
 #[Requires(forward: true)]
 final class Error5xxPresenter implements Nette\Application\IPresenter
 {
+
 	public function __construct(
 		private ILogger $logger,
-	) {
-	}
+	) {}
 
 
+
+	#[\Override]
 	public function run(Nette\Application\Request $request): Nette\Application\Response
 	{
 		// Log the exception
@@ -34,4 +36,5 @@ final class Error5xxPresenter implements Nette\Application\IPresenter
 			}
 		});
 	}
+
 }
