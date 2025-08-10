@@ -5,6 +5,7 @@ services:
 search:
 	-	in: %appDir%
 		classes:
+			- *Creator
 			- *Facade
 			- *Factory
 			- *Repository

@@ -6,10 +6,11 @@ use Nette;
 use WbAssignment;
 
 
-final class OwnersPresenter extends Nette\Application\UI\Presenter
+final class OwnersPresenter extends WbAssignment\Presentation\Api\BaseApiPresenter
 {
 
 	public function __construct(
+		private readonly WbAssignment\Core\Owners\Creator $ownersCreator,
 		private readonly WbAssignment\Core\Owners\Repository $ownersRepository,
 	)
 	{
@@ -28,9 +29,46 @@ final class OwnersPresenter extends Nette\Application\UI\Presenter
 					$this->ownersRepository->loadOwners(),
 				),
 			);
+		} elseif ($request->method === 'POST') {
+			$requestData = $this->getRequestData();
+
+			if ($requestData === NULL) {
+				$this->getHttpResponse()->setCode(Nette\Http\IResponse::S400_BadRequest);
+				return new Nette\Application\Responses\JsonResponse([
+					'error' => 'Invalid or missing request input',
+				]);
+			}
+
+			try {
+				$data = $this->validateAndNormalizeInput($requestData);
+			} catch (Nette\Schema\ValidationException $e) {
+				$this->getHttpResponse()->setCode(Nette\Http\IResponse::S400_BadRequest);
+				return new Nette\Application\Responses\JsonResponse([
+					'error' => $e->getMessage(),
+				]);
+			}
+
+			try {
+				$uuid = $this->ownersCreator->create(
+					$data['firstname'],
+					$data['lastname'],
+				);
+			} catch (WbAssignment\Core\Owners\Exceptions\OperationFailedException) {
+				$this->getHttpResponse()->setCode(Nette\Http\IResponse::S500_InternalServerError);
+				return new Nette\Application\Responses\JsonResponse([
+					'error' => 'Some error has occurred',
+				]);
+			}
+
+			return new Nette\Application\Responses\JsonResponse([
+				'uuid' => $uuid,
+			]);
 		}
 
-		throw new Nette\NotImplementedException();
+		$this->getHttpResponse()->setCode(Nette\Http\IResponse::S405_MethodNotAllowed);
+		return new Nette\Application\Responses\JsonResponse([
+			'error' => sprintf('Method %s is allowed', $request->method),
+		]);
 	}
 
 
@@ -42,6 +80,32 @@ final class OwnersPresenter extends Nette\Application\UI\Presenter
 			'firstname' => $owner->firstname,
 			'lastname' => $owner->lastname,
 		];
+	}
+
+
+
+	/**
+	 * @param array<string, mixed> $input
+	 * @return array{
+	 *   firstname: string,
+	 *   lastname: string,
+	 * }
+	 */
+	private function validateAndNormalizeInput(array $input): array
+	{
+		$schemaProcessor = new Nette\Schema\Processor();
+
+		return $schemaProcessor->process(
+			(new Nette\Schema\Elements\Structure([
+				'firstname' => Nette\Schema\Expect::string()
+					->max(50)
+					->required(),
+				'lastname' => Nette\Schema\Expect::string()
+					->max(50)
+					->required(),
+			]))->castTo('array'),
+			$input,
+		);
 	}
 
 }

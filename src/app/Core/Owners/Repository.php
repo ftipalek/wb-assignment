@@ -15,6 +15,23 @@ class Repository
 
 
 
+	public function getOwner(Ramsey\Uuid\UuidInterface $uuid): Owner
+	{
+		$row = $this->database->query('
+			SELECT *
+			FROM `owners`
+			WHERE `uuid` = %s', $uuid->toString(), '
+		')->fetch();
+
+		if ($row === NULL) {
+			throw new Exceptions\NotFoundException();
+		}
+
+		return $this->createOwner($row);
+	}
+
+
+
 	/**
 	 * @return list<Owner>
 	 */
