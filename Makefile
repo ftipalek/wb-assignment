@@ -1,3 +1,11 @@
+.PHONE codesniffer:
+codesniffer:
+	cd ./src && composer codesniffer
+
+.PHONE codesnifferFix:
+codesnifferFix:
+	cd ./src && composer codesnifferFix
+
 .PHONE composerValidate:
 composerValidate:
 	cd ./src && composer validate --strict
@@ -8,4 +16,4 @@ dockerComposeUp:
 
 .PHONE phpstan:
 phpstan:
-	cd ./src && composer phpstan	
+	cd ./src && composer phpstan

@@ -3,15 +3,15 @@
 namespace WbAssignment\Presentation\Error\Error4xx;
 
 use Nette;
-use Nette\Application\Attributes\Requires;
 
 
 /**
  * Handles 4xx HTTP error responses.
  */
-#[Requires(methods: '*', forward: true)]
+#[Nette\Application\Attributes\Requires(methods: '*', forward: TRUE)]
 final class Error4xxPresenter extends Nette\Application\UI\Presenter
 {
+
 	public function renderDefault(Nette\Application\BadRequestException $exception): void
 	{
 		// renders the appropriate error template based on the HTTP status code
@@ -22,4 +22,5 @@ final class Error4xxPresenter extends Nette\Application\UI\Presenter
 		$this->template->httpCode = $code;
 		$this->template->setFile($file);
 	}
+
 }
