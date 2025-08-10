@@ -17,3 +17,7 @@ dockerComposeUp:
 .PHONE phpstan:
 phpstan:
 	cd ./src && composer phpstan
+
+.PHONE tester:
+tester:
+	cd ./src && composer tester
