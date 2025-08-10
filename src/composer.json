@@ -6,6 +6,7 @@
 	"require": {
 		"php": ">= 8.3",
 		"dibi/dibi": "^5.1",
+		"guzzlehttp/guzzle": "^7.9",
 		"latte/latte": "^3.0",
 		"nette/application": "^3.2.3",
 		"nette/assets": "^1.0.0",
@@ -20,6 +21,7 @@
 		"nette/security": "^3.2",
 		"nette/utils": "^4.0",
 		"ramsey/uuid": "^4.9",
+		"symfony/console": "^7.3",
 		"tracy/tracy": "^2.10"
 	},
 	"require-dev": {
