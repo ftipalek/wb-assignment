@@ -1,0 +1,22 @@
+services:
+    api:
+        build:
+            dockerfile: ./docker/DockerfilePhp
+        ports:
+            - 8090:80
+        volumes:
+            - ./docker/apache.conf:/etc/apache2/sites-available/000-default.conf
+            - ./src:/var/www/html
+        depends_on:
+            - database
+
+    database:
+        image: mariadb:10.4
+        container_name: database
+        environment: # Accepted security risk for sake of development speed
+            MYSQL_ROOT_PASSWORD: rootpassword
+            MYSQL_DATABASE: mydb
+            MYSQL_USER: myuser
+            MYSQL_PASSWORD: mypass
+        ports:
+            - "3306:3306"

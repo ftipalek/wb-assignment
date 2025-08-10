@@ -4,8 +4,82 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed24e22e05daeaa8f7f7ef0c04598c18",
+    "content-hash": "ba1c3e5390d38a49e86932890ac01656",
     "packages": [
+        {
+            "name": "dibi/dibi",
+            "version": "v5.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dg/dibi.git",
+                "reference": "32b6976209859f61eb79380c5a8904ea33db47df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dg/dibi/zipball/32b6976209859f61eb79380c5a8904ea33db47df",
+                "reference": "32b6976209859f61eb79380c5a8904ea33db47df",
+                "shasum": ""
+            },
+            "require": {
+                "php": "8.2 - 8.5"
+            },
+            "replace": {
+                "dg/dibi": "*"
+            },
+            "require-dev": {
+                "jetbrains/phpstorm-attributes": "^1.0",
+                "nette/di": "^3.1",
+                "nette/tester": "^2.5",
+                "phpstan/phpstan-nette": "^2.0@stable",
+                "tracy/tracy": "^2.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dibi\\": "src/Dibi"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0-only",
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                }
+            ],
+            "description": "Dibi is Database Abstraction Library for PHP",
+            "homepage": "https://dibiphp.com",
+            "keywords": [
+                "access",
+                "database",
+                "dbal",
+                "mssql",
+                "mysql",
+                "odbc",
+                "oracle",
+                "pdo",
+                "postgresql",
+                "sqlite",
+                "sqlsrv"
+            ],
+            "support": {
+                "issues": "https://github.com/dg/dibi/issues",
+                "source": "https://github.com/dg/dibi/tree/v5.1.0"
+            },
+            "time": "2025-08-06T22:26:19+00:00"
+        },
         {
             "name": "latte/latte",
             "version": "v3.0.23",

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App;
+namespace WbAssignment;
 
 use Nette;
 use Nette\Bootstrap\Configurator;

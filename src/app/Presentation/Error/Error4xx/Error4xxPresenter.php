@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Presentation\Error\Error4xx;
+namespace WbAssignment\Presentation\Error\Error4xx;
 
 use Nette;
 use Nette\Application\Attributes\Requires;

@@ -1,13 +1,20 @@
 # see https://doc.nette.org/en/configuring
 
 parameters:
+	dibi: # Accepted security risk for sake of development speed
+		host: database
+		port: 3306
+		database: mydb
+		user: myuser
+		password: mypass
+		lazy: TRUE
 
 
 application:
 	errorPresenter:
 		4xx: Error:Error4xx
 		5xx: Error:Error5xx
-	mapping: App\Presentation\*\**Presenter
+	mapping: WbAssignment\Presentation\*\**Presenter
 
 
 database:
@@ -20,7 +27,7 @@ latte:
 	strictTypes: yes
 	strictParsing: yes
 	extensions:
-		- App\Presentation\Accessory\LatteExtension
+		- WbAssignment\Presentation\Accessory\LatteExtension
 
 
 assets:
@@ -34,3 +41,10 @@ di:
 	export:
 		parameters: no
 		tags: no
+
+
+dibi: %dibi%
+
+
+extensions:
+	dibi: Dibi\Bridges\Nette\DibiExtension22
