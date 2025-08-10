@@ -26,5 +26,8 @@ jobs:
                 cd ./src
                 composer install --prefer-dist --no-progress
 
+            - name: Run codesniffer
+              run: make codesniffer
+
             - name: Run phpstan
               run: make phpstan

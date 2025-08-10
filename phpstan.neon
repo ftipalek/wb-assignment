@@ -1,9 +1,33 @@
 parameters:
+	checkDynamicProperties: true
+
+	checkMissingCallableSignature: true
+
+	checkMissingOverrideMethodAttribute: true
+
+	checkTooWideReturnTypesInProtectedAndPublicMethods: true
+
+	checkUninitializedProperties: true
+
+	fileExtensions:
+		- php
+		- phpt
+
 	level: 5
 
 	paths:
 		- ./src/app
 		- ./src/www
+
+	reportAnyTypeWideningInVarTag: true
+
+	reportWrongPhpDocTypeInVarTag: true
+
+	strictRules:
+		allRules: true
+
+	universalObjectCratesClasses:
+		- Dibi\Row
 
 includes:
 	- ./src/vendor/phpstan/phpstan-deprecation-rules/rules.neon

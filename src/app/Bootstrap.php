@@ -3,21 +3,24 @@
 namespace WbAssignment;
 
 use Nette;
-use Nette\Bootstrap\Configurator;
 
 
 class Bootstrap
 {
-	private Configurator $configurator;
+
+	private Nette\Bootstrap\Configurator $configurator;
+
 	private string $rootDir;
+
 
 
 	public function __construct()
 	{
 		$this->rootDir = dirname(__DIR__);
-		$this->configurator = new Configurator;
+		$this->configurator = new Nette\Bootstrap\Configurator();
 		$this->configurator->setTempDirectory($this->rootDir . '/temp');
 	}
+
 
 
 	public function bootWebApplication(): Nette\DI\Container
@@ -26,6 +29,7 @@ class Bootstrap
 		$this->setupContainer();
 		return $this->configurator->createContainer();
 	}
+
 
 
 	public function initializeEnvironment(): void
@@ -39,10 +43,12 @@ class Bootstrap
 	}
 
 
+
 	private function setupContainer(): void
 	{
 		$configDir = $this->rootDir . '/config';
 		$this->configurator->addConfig($configDir . '/common.neon');
 		$this->configurator->addConfig($configDir . '/services.neon');
 	}
+
 }

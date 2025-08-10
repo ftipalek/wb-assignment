@@ -3,17 +3,20 @@
 namespace WbAssignment\Core;
 
 use Nette;
-use Nette\Application\Routers\RouteList;
 
 
 final class RouterFactory
 {
+
 	use Nette\StaticClass;
 
-	public static function createRouter(): RouteList
+
+
+	public static function createRouter(): Nette\Application\Routers\RouteList
 	{
-		$router = new RouteList;
+		$router = new Nette\Application\Routers\RouteList();
 		$router->addRoute('<presenter>/<action>[/<id>]', 'Home:default');
 		return $router;
 	}
+
 }
