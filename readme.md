@@ -56,3 +56,4 @@ php cliConsole.php devices:list
 - Properly use MySQL database even for unit tests instead or using in-memory sqlite
 - Audit logging when changing data
 - Authorization and authentication of users
+- Improve unit tests coverage - current state is only informational 
