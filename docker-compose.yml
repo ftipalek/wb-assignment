@@ -3,12 +3,13 @@ services:
         build:
             dockerfile: ./docker/DockerfilePhp
         ports:
-            - 8090:80
+            - "8090:80"
         volumes:
             - ./docker/apache.conf:/etc/apache2/sites-available/000-default.conf
             - ./src:/var/www/html
         depends_on:
-            - database
+            database:
+                condition: service_healthy
 
     database:
         image: mariadb:10.4
@@ -20,3 +21,10 @@ services:
             MYSQL_PASSWORD: mypass
         ports:
             - "3306:3306"
+        volumes:
+            - ./schema/:/docker-entrypoint-initdb.d:ro
+        healthcheck:
+           test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-pRootpass" ]
+           interval: 5s
+           timeout: 3s
+           retries: 20

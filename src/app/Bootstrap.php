@@ -34,6 +34,10 @@ class Bootstrap
 
 	public function initializeEnvironment(): void
 	{
+		if (file_exists($this->rootDir . '/log') === FALSE) {
+			mkdir($this->rootDir . '/log');
+		}
+
 		//$this->configurator->setDebugMode('secret@23.75.345.200'); // enable for your remote IP
 		$this->configurator->enableTracy($this->rootDir . '/log');
 

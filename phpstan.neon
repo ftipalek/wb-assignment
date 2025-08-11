@@ -13,11 +13,15 @@ parameters:
 		- php
 		- phpt
 
+	ignoreErrors:
+		- '#Class dibi referenced with incorrect case: Dibi\.#'
+
 	level: 5
 
 	paths:
 		- ./src/app
 		- ./src/www
+		- ./tests
 
 	reportAnyTypeWideningInVarTag: true
 

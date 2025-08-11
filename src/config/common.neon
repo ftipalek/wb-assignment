@@ -28,3 +28,4 @@ dibi: %dibi%
 
 extensions:
 	dibi: Dibi\Bridges\Nette\DibiExtension22
+	symfony_console: WbAssignemnt\Core\SymfonyConsole\DI\Extension

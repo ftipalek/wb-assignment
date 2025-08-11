@@ -1,10 +1,13 @@
 services:
 	- WbAssignment\Core\RouterFactory::createRouter
+	- GuzzleHttp\Client
 
 
 search:
 	-	in: %appDir%
 		classes:
+			- *Command
+			- *Creator
 			- *Facade
 			- *Factory
 			- *Repository

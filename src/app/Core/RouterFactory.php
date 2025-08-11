@@ -15,7 +15,15 @@ final class RouterFactory
 	public static function createRouter(): Nette\Application\Routers\RouteList
 	{
 		$router = new Nette\Application\Routers\RouteList();
+
+		$router->addRoute('api/<presenter>[/<id>]', [
+			'module' => 'Api',
+			'presenter' => 'Home',
+			'action' => 'default',
+		]);
+
 		$router->addRoute('<presenter>/<action>[/<id>]', 'Home:default');
+
 		return $router;
 	}
 

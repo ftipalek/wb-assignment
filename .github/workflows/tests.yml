@@ -31,3 +31,6 @@ jobs:
 
             - name: Run phpstan
               run: make phpstan
+
+            - name: Run tester
+              run: make tester
